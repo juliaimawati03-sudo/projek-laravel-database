@@ -16,14 +16,16 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $table = 'user';
+
     public function transactions()
     {
-        return $this->hasMany(Transaction::class, 'kasir_id');
+        return $this->hasMany(Transaksi::class, 'kasir_id');
     }
 
     public function catatanKeuangans()
     {
-        return $this->hasMany(CatatanKeuangan::class);
+        return $this->hasMany(CatatanKeuangan::class, 'user_id');
     }
 
     /**
